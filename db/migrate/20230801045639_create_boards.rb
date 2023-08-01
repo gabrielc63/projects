@@ -3,7 +3,6 @@ class CreateBoards < ActiveRecord::Migration[7.0]
     create_table :boards do |t|
       t.string :name, null: false
       t.boolean :isActive, default: false
-      t.jsonb :data
 
       t.timestamps
     end

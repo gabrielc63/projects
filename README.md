@@ -1,24 +1,13 @@
-# README
+# Projects
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the api for an application similar to trello to manage projects.
 
-Things you may want to cover:
+- Ruby version
+  3.0.5
 
-* Ruby version
+### Development Setup
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. `rails db:create`
+2. `rails db:migrate`
+3. `rails db:seed`
+4. `rails s -p 4000`

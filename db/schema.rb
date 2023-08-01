@@ -17,7 +17,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_045639) do
   create_table "boards", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "isActive", default: false
-    t.jsonb "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
