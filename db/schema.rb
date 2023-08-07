@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_01_183615) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_06_235925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,5 +30,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_183615) do
     t.index ["board_id"], name: "index_lists_on_board_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.string "status"
+    t.bigint "list_id"
+    t.bigint "parent_task_id"
+    t.boolean "is_completed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_tasks_on_list_id"
+    t.index ["parent_task_id"], name: "index_tasks_on_parent_task_id"
+  end
+
   add_foreign_key "lists", "boards"
+  add_foreign_key "tasks", "lists"
+  add_foreign_key "tasks", "tasks", column: "parent_task_id"
 end

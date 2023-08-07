@@ -1,7 +1,11 @@
 class Api::V1::BoardsController < ApplicationController
   def index
     boards = Board.all
-    render json: boards, include: :lists
+    render json: boards,
+           include: [lists: { only: %i[id name],
+                              include: { tasks: { only: %i[id title description status],
+                                                  include: { subtasks: { only: %i[id title
+                                                                                  is_completed] } } } } }]
   end
 
   def create
@@ -13,15 +17,13 @@ class Api::V1::BoardsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def destroy
-  end
+  def destroy; end
 
   private
 
   def board_params
-    params.permit(:name, lists_attributes: [:name, :position])
+    params.permit(:name, lists_attributes: %i[name position])
   end
 end
